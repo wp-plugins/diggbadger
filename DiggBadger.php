@@ -3,7 +3,7 @@
 	Plugin Name: DiggBadger
 	Plugin URI: http://www.kennycarlile.com/DiggBadger/
 	Description: This Wordpress 2.x plugin provides a clean Digg badge/button for your pages and posts. 
-	Version: 1.0
+	Version: 1.1
 	Author: Kenny Carlile
 	Author URI: http://www.kennycarlile.com
 	
@@ -52,6 +52,10 @@
 			    margin-bottom: 4px;
 			    margin-left: 4px;
 			}
+
+			v1.1: You can now provide a second parameter that specifies the CSS class to use.
+			The default CSS class is .diggBadger, but you can declare one or more classes
+			each time this function is called.
 			
 		3. Save the modified theme files.
 		
@@ -62,14 +66,18 @@
 		defaultTopic
 			Default: ''
 			Specify the default topic for your posts. Valid strings can be found here: http://www.digg.com/tools/integrate#topics
+		cssClass (added in v1.1)
+			Default: 'diggBadger'
+			Specifies the CSS class to use for styling the outer DIV. To disable styling, pass an unused class name, such as 'DoNotStyle'
+			
 		
 		--------------------------------------------------------------------------------
 	*/
 
-	function getDiggBadger($defaultTopic = '')
+	function getDiggBadger($defaultTopic = '', $cssClass = 'diggBadger')
 	{
-	?>
-		<div class="diggBadger">
+?>
+		<div class='<?php echo $cssClass; ?>'>
 		    <script type="text/javascript">
 		        digg_url = '<?php the_permalink(); ?>';
 		        digg_title = '<?php the_title(); ?>';
